@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.mwj.depthview.depthview_lib.DepthMapView
+        android:id="@+id/dep"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:background_color="@color/depth_background"
+        app:buy_line_color="@color/depth_buy_line"
+        app:buy_path_color="@color/depth_buy_path"
+        app:circle_radius="4dp"
+        app:dot_radius="3dp"
+        app:line_count="4"
+        app:line_width="1.5dp"
+        app:sell_line_color="@color/depth_sell_line"
+        app:sell_path_color="@color/depth_sell_path"
+        app:text_color="@color/depth_text_color"
+        app:text_size="10sp"
+        app:trust_price="成交价"
+        app:trust_quantity="成交量" />
+
+</android.support.constraint.ConstraintLayout>
