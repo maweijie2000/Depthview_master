@@ -129,21 +129,21 @@ public class DepthMapView extends View {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.DepthMapView);
         if (typedArray != null) {
             try {
-                mLineCount = typedArray.getInt(R.styleable.DepthMapView_line_count, 4);
-                mDotRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_dot_radius, ResourceUtil.dp2px(getContext(), mDotRadius));
-                mCircleRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_circle_radius, ResourceUtil.dp2px(getContext(), mCircleRadius));
-                mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_background_color, ResourceUtil.getColor(getContext(), R.color.depth_background));
-                mBuyLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
-                mSellLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
-                mTextPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_text_color, ResourceUtil.getColor(getContext(), R.color.depth_text_color)));
-                mTextPaint.setTextSize(typedArray.getDimension(R.styleable.DepthMapView_text_size, ResourceUtil.getDimension(getContext(), R.dimen.depth_text_size)));
-                mBuyLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line)));
-                mSellLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line)));
-                mBuyPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_buy_path_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_path)));
-                mSellPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_sell_path_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_path)));
-                mSelectorBackgroundPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_selector_background_color, ResourceUtil.getColor(getContext(), R.color.depth_selector)));
-                trust_price = typedArray.getString(R.styleable.DepthMapView_trust_price);
-                trust_quantity = typedArray.getString(R.styleable.DepthMapView_trust_quantity);
+                mLineCount = typedArray.getInt(R.styleable.DepthMapView_depthview_line_count, 4);
+                mDotRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depthview_dot_radius, ResourceUtil.dp2px(getContext(), mDotRadius));
+                mCircleRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depthview_circle_radius, ResourceUtil.dp2px(getContext(), mCircleRadius));
+                mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_depthview_background_color, ResourceUtil.getColor(getContext(), R.color.depth_background));
+                mBuyLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depthview_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
+                mSellLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depthview_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
+                mTextPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_text_color, ResourceUtil.getColor(getContext(), R.color.depth_text_color)));
+                mTextPaint.setTextSize(typedArray.getDimension(R.styleable.DepthMapView_depthview_text_size, ResourceUtil.getDimension(getContext(), R.dimen.depth_text_size)));
+                mBuyLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line)));
+                mSellLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line)));
+                mBuyPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_buy_path_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_path)));
+                mSellPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_sell_path_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_path)));
+                mSelectorBackgroundPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_selector_background_color, ResourceUtil.getColor(getContext(), R.color.depth_selector)));
+                trust_price = typedArray.getString(R.styleable.DepthMapView_depthview_trust_price);
+                trust_quantity = typedArray.getString(R.styleable.DepthMapView_depthview_trust_quantity);
             } finally {
                 typedArray.recycle();
             }

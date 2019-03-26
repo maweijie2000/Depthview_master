@@ -3,32 +3,32 @@
     <!--深度图DepthMapView-->
     <declare-styleable name="DepthMapView">
         <!--买入颜色-->
-        <attr name="buy_line_color" format="color|reference" />
+        <attr name="depthview_buy_line_color" format="color|reference" />
         <!--买入区域内部颜色-->
-        <attr name="buy_path_color" format="color|reference" />
+        <attr name="depthview_buy_path_color" format="color|reference" />
         <!--卖出颜色-->
-        <attr name="sell_line_color" format="color|reference" />
+        <attr name="depthview_sell_line_color" format="color|reference" />
         <!--卖出区域内部颜色-->
-        <attr name="sell_path_color" format="color|reference" />
+        <attr name="depthview_sell_path_color" format="color|reference" />
         <!--线条宽度-->
-        <attr name="line_width" format="dimension" />
+        <attr name="depthview_line_width" format="dimension" />
         <!--文字颜色-->
-        <attr name="text_color" format="color|reference" />
+        <attr name="depthview_text_color" format="color|reference" />
         <!--背景颜色-->
-        <attr name="background_color" format="color|reference" />
+        <attr name="depthview_background_color" format="color|reference" />
         <!--选中后文字背景颜色-->
-        <attr name="selector_background_color" format="color|reference" />
+        <attr name="depthview_selector_background_color" format="color|reference" />
         <!--右侧价格行数-->
-        <attr name="line_count" format="integer" />
+        <attr name="depthview_line_count" format="integer" />
         <!--文字大小-->
-        <attr name="text_size" format="dimension" />
+        <attr name="depthview_text_size" format="dimension" />
         <!--圆圈半径-->
-        <attr name="circle_radius" format="dimension" />
+        <attr name="depthview_circle_radius" format="dimension" />
         <!--点的半径-->
-        <attr name="dot_radius" format="dimension" />
+        <attr name="depthview_dot_radius" format="dimension" />
         <!--委托价-->
-        <attr name="trust_price" format="string" />
+        <attr name="depthview_trust_price" format="string" />
         <!--委托量-->
-        <attr name="trust_quantity" format="string" />
+        <attr name="depthview_trust_quantity" format="string" />
     </declare-styleable>
 </resources>
