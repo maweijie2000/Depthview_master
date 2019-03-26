@@ -6,10 +6,14 @@
         <attr name="depthview_buy_line_color" format="color|reference" />
         <!--买入区域内部颜色-->
         <attr name="depthview_buy_path_color" format="color|reference" />
+        <!--买入区域内部颜色的透明度-->
+        <attr name="depthview_buy_path_alpha" format="integer" />
         <!--卖出颜色-->
         <attr name="depthview_sell_line_color" format="color|reference" />
         <!--卖出区域内部颜色-->
         <attr name="depthview_sell_path_color" format="color|reference" />
+        <!--卖出区域内部颜色的透明度-->
+        <attr name="depthview_sell_path_alpha" format="integer" />
         <!--线条宽度-->
         <attr name="depthview_line_width" format="dimension" />
         <!--文字颜色-->

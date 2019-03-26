@@ -138,9 +138,11 @@ public class DepthMapView extends View {
                 mTextPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_text_color, ResourceUtil.getColor(getContext(), R.color.depth_text_color)));
                 mTextPaint.setTextSize(typedArray.getDimension(R.styleable.DepthMapView_depthview_text_size, ResourceUtil.getDimension(getContext(), R.dimen.depth_text_size)));
                 mBuyLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line)));
+                mBuyLinePaint.setAlpha(typedArray.getInt(R.styleable.DepthMapView_depthview_buy_path_alpha, 0));
                 mSellLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line)));
                 mBuyPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_buy_path_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_path)));
                 mSellPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_sell_path_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_path)));
+                mSellPathPaint.setAlpha(typedArray.getInt(R.styleable.DepthMapView_depthview_sell_path_alpha, 0));
                 mSelectorBackgroundPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_selector_background_color, ResourceUtil.getColor(getContext(), R.color.depth_selector)));
                 trust_price = typedArray.getString(R.styleable.DepthMapView_depthview_trust_price);
                 trust_quantity = typedArray.getString(R.styleable.DepthMapView_depthview_trust_quantity);
@@ -209,7 +211,7 @@ public class DepthMapView extends View {
             case MotionEvent.ACTION_MOVE:
 //                if (event.getPointerCount() == 1) {
 //                    mIsLongPress = true;
-                    invalidate();
+                invalidate();
 //                }
                 break;
             case MotionEvent.ACTION_UP:
