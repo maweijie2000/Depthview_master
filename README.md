@@ -44,7 +44,7 @@ k线深度图
 
 2、Add the dependency
           dependencies {
-            implementation 'com.github.User:Repo:Tag'
+            implementation 'com.github.maweijie2000:Depthview_master:1.0.1'
           }
 
 3、在xml中配置
