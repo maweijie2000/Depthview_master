@@ -236,7 +236,7 @@ public class DepthMapView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
 //                if (event.getPointerCount() == 1) {
-//                    mIsLongPress = true;
+                    mIsLongPress = true;
 
                 invalidate();
 //                }
