@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -18,6 +19,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 public class DepthMapView extends View {
 
@@ -46,6 +49,13 @@ public class DepthMapView extends View {
     private int mDrawHeight;
     //触摸点的X轴值
     private int mEventX;
+
+    //买的title颜色
+    private int buyColor;
+    //卖的title颜色
+    private int sellColor;
+
+    private Paint fillPaint;
 
     //文案绘制画笔
     private Paint mTextPaint;
@@ -101,16 +111,30 @@ public class DepthMapView extends View {
         mBottomPrice = new Float[4];
         mBuyData = new ArrayList<>();
         mSellData = new ArrayList<>();
-        mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+
+        //为了解决滑动过程中的卡顿问题
+        new Thread(new Runnable() {
             @Override
-            public void onLongPress(MotionEvent e) {
-                mIsLongPress = true;
-                invalidate();
+            public void run() {
+                Looper.prepare(); // <- 重点在这里
+
+                mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public void onLongPress(MotionEvent e) {
+                        mIsLongPress = true;
+                        invalidate();
+                    }
+                });
             }
-        });
+        }).start();
+
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setTextAlign(Paint.Align.RIGHT);
+
+        fillPaint = new Paint();
+        fillPaint.setAntiAlias(true);
+        fillPaint.setStyle(Paint.Style.FILL);
 
         mBuyLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBuyLinePaint.setStyle(Paint.Style.STROKE);
@@ -137,8 +161,10 @@ public class DepthMapView extends View {
                 mSellLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depthview_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
                 mTextPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_text_color, ResourceUtil.getColor(getContext(), R.color.depth_text_color)));
                 mTextPaint.setTextSize(typedArray.getDimension(R.styleable.DepthMapView_depthview_text_size, ResourceUtil.getDimension(getContext(), R.dimen.depth_text_size)));
-                mBuyLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line)));
-                mSellLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line)));
+                buyColor = typedArray.getColor(R.styleable.DepthMapView_depthview_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line));
+                mBuyLinePaint.setColor(buyColor);
+                sellColor = typedArray.getColor(R.styleable.DepthMapView_depthview_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line));
+                mSellLinePaint.setColor(sellColor);
                 mBuyPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_buy_path_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_path)));
                 mSellPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depthview_sell_path_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_path)));
                 mSellPathPaint.setAlpha(typedArray.getInt(R.styleable.DepthMapView_depthview_sell_path_alpha, 0));
@@ -211,6 +237,7 @@ public class DepthMapView extends View {
             case MotionEvent.ACTION_MOVE:
 //                if (event.getPointerCount() == 1) {
 //                    mIsLongPress = true;
+
                 invalidate();
 //                }
                 break;
