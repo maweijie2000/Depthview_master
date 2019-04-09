@@ -80,6 +80,7 @@ public class DepthMapView extends View {
 
     //    价格显示精度限制
     public int mPriceLimit = 8;
+    public int mCountLimit = 8;
 
     private HashMap<Integer, DepthDataBean> mMapX;
     private HashMap<Integer, Float> mMapY;
@@ -104,6 +105,10 @@ public class DepthMapView extends View {
 
     public void setPriceLimit(int mPriceLimit) {
         this.mPriceLimit = mPriceLimit;
+    }
+
+    public void setCountLimit(int mCountLimit) {
+        this.mCountLimit = mCountLimit;
     }
 
     @SuppressLint("UseSparseArrays")
@@ -417,7 +422,7 @@ public class DepthMapView extends View {
 
     @SuppressLint("DefaultLocale")
     private String getVolumeValue(float value) {
-        return String.format("%.4f", value);
+        return String.format("%." + mCountLimit + "f", value);
     }
 
 }

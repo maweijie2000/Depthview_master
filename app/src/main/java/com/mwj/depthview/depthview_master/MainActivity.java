@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         dep.setPriceLimit(6);//设置位数
+        dep.setCountLimit(6);
 
         setData();
 
