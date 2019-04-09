@@ -79,8 +79,7 @@ public class DepthMapView extends View {
     private List<DepthDataBean> mSellData;
 
     //    价格显示精度限制
-    public int mPriceLimit = 4;
-//    private int mVolumeLimit = 5;
+    public int mPriceLimit = 8;
 
     private HashMap<Integer, DepthDataBean> mMapX;
     private HashMap<Integer, Float> mMapY;
@@ -101,6 +100,10 @@ public class DepthMapView extends View {
     public DepthMapView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
+    }
+
+    public void setPriceLimit(int mPriceLimit) {
+        this.mPriceLimit = mPriceLimit;
     }
 
     @SuppressLint("UseSparseArrays")
@@ -236,7 +239,7 @@ public class DepthMapView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
 //                if (event.getPointerCount() == 1) {
-                    mIsLongPress = true;
+                mIsLongPress = true;
 
                 invalidate();
 //                }
