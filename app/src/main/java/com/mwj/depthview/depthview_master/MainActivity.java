@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        dep.setPriceLimit(6);//设置位数
+
         setData();
 
     }
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                 }
+
                 newDepth();
                 handler.postDelayed(this, 5000);
             }
