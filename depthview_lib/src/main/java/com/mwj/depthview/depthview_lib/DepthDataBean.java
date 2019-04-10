@@ -5,6 +5,8 @@ public class DepthDataBean {
     private float mPrice;
     private float mVolume;
 
+    private float currentVolume;
+
     public float getVolume() {
         return mVolume;
     }
@@ -19,5 +21,13 @@ public class DepthDataBean {
 
     public void setPrice(float price) {
         this.mPrice = price;
+    }
+
+    public float getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(float currentVolume) {
+        this.currentVolume = currentVolume;
     }
 }

@@ -385,7 +385,7 @@ public class DepthMapView extends View {
         }
         canvas.drawCircle(position, y, mDotRadius, mRadioPaint);
 
-        String volume = trust_quantity + ": " + getVolumeValue(mMapX.get(position).getVolume());
+        String volume = trust_quantity + ": " + getVolumeValue(mMapX.get(position).getCurrentVolume());
         String price = trust_price + ": " + getValue(mMapX.get(position).getPrice());
         float width = Math.max(mTextPaint.measureText(volume), mTextPaint.measureText(price));
         Paint.FontMetrics metrics = mTextPaint.getFontMetrics();
@@ -395,7 +395,7 @@ public class DepthMapView extends View {
         canvas.drawRoundRect(new RectF(mDrawWidth - width / 2 - padding, 0, mDrawWidth + width / 2 + padding * 2, textHeight * 2 + padding * 2), 10, 10, mSelectorBackgroundPaint);
         canvas.drawText(trust_quantity + ": ",
                 mDrawWidth - width / 2 + padding + mTextPaint.measureText(trust_quantity), textHeight + 2, mTextPaint);
-        canvas.drawText(getVolumeValue(mMapX.get(position).getVolume()), mDrawWidth + width / 2 + padding, textHeight + 2, mTextPaint);
+        canvas.drawText(getVolumeValue(mMapX.get(position).getCurrentVolume()), mDrawWidth + width / 2 + padding, textHeight + 2, mTextPaint);
         canvas.drawText(trust_price + ": ",
                 mDrawWidth - width / 2 + padding + mTextPaint.measureText(trust_price), textHeight * 2 + padding, mTextPaint);
         canvas.drawText(getValue(mMapX.get(position).getPrice()), mDrawWidth + width / 2 + padding, textHeight * 2 + padding, mTextPaint);

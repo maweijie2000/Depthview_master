@@ -50,15 +50,15 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         jsonData = DepthData.depthA;
                         break;
-                    case 2:
-                        jsonData = DepthData.depthB;
-                        break;
-                    case 3:
-                        jsonData = DepthData.depthC;
-                        break;
-                    case 4:
-                        jsonData = DepthData.depthD;
-                        break;
+//                    case 2:
+//                        jsonData = DepthData.depthB;
+//                        break;
+//                    case 3:
+//                        jsonData = DepthData.depthC;
+//                        break;
+//                    case 4:
+//                        jsonData = DepthData.depthD;
+//                        break;
 
                 }
 
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 DepthDataBean obj = new DepthDataBean();
                 obj.setPrice(Float.parseFloat(bids.get(i)[0]));
                 obj.setVolume(Float.parseFloat(bids.get(i)[1]));
+                obj.setCurrentVolume(Float.parseFloat(bids.get(i)[1]));
                 listDepthBuy.add(obj);
             }
         }
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 DepthDataBean obj = new DepthDataBean();
                 obj.setPrice(Float.parseFloat(asks.get(i)[0]));
                 obj.setVolume(Float.parseFloat(asks.get(i)[1]));
+                obj.setCurrentVolume(Float.parseFloat(asks.get(i)[1]));
                 listDepthSell.add(obj);
             }
         }
