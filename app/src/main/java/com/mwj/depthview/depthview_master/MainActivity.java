@@ -3,6 +3,7 @@ package com.mwj.depthview.depthview_master;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.mwj.depthview.depthview_lib.DepthDataBean;
@@ -50,15 +51,15 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         jsonData = DepthData.depthA;
                         break;
-//                    case 2:
-//                        jsonData = DepthData.depthB;
-//                        break;
-//                    case 3:
-//                        jsonData = DepthData.depthC;
-//                        break;
-//                    case 4:
-//                        jsonData = DepthData.depthD;
-//                        break;
+                    case 2:
+                        jsonData = DepthData.depthB;
+                        break;
+                    case 3:
+                        jsonData = DepthData.depthC;
+                        break;
+                    case 4:
+                        jsonData = DepthData.depthD;
+                        break;
 
                 }
 
@@ -77,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void newDepth() {
+
+        if (dep.isPressed()) {
+            Toast.makeText(this,"changanzhong....",Toast.LENGTH_LONG).show();
+            return;
+        }
+
         final List<DepthDataBean> listDepthBuy = new ArrayList<>();
         final List<DepthDataBean> listDepthSell = new ArrayList<>();
 

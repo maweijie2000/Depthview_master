@@ -250,7 +250,7 @@ public class DepthMapView extends View {
 //                }
                 break;
             case MotionEvent.ACTION_UP:
-                mIsLongPress = true;
+                mIsLongPress = false;
                 invalidate();
                 break;
             case MotionEvent.ACTION_CANCEL:
@@ -423,6 +423,10 @@ public class DepthMapView extends View {
     @SuppressLint("DefaultLocale")
     private String getVolumeValue(float value) {
         return String.format("%." + mCountLimit + "f", value);
+    }
+
+    public boolean isPressed(){
+        return mIsLongPress;
     }
 
 }
