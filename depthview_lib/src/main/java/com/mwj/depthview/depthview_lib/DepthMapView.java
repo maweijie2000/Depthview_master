@@ -10,6 +10,7 @@ import android.graphics.RectF;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -85,6 +86,7 @@ public class DepthMapView extends View {
     private HashMap<Integer, DepthDataBean> mMapX;
     private HashMap<Integer, Float> mMapY;
     private Float[] mBottomPrice;
+
 //    private GestureDetector mGestureDetector;
 
     private String trust_price;
@@ -264,10 +266,12 @@ public class DepthMapView extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 mIsLongPress = false;
+                mLastPosition = -1;
                 invalidate();
                 break;
             case MotionEvent.ACTION_CANCEL:
                 mIsLongPress = false;
+                mLastPosition = -1;
                 invalidate();
                 break;
         }
@@ -373,6 +377,7 @@ public class DepthMapView extends View {
         if (mIsLongPress) {
             mIsHave = false;
             for (int key : mMapX.keySet()) {
+
                 if (key == mEventX) {
                     mLastPosition = mEventX;
                     drawSelectorView(canvas, key);
@@ -387,6 +392,7 @@ public class DepthMapView extends View {
 
     private void drawSelectorView(Canvas canvas, int position) {
         mIsHave = true;
+        if (position == -1) return;
         Float y = mMapY.get(position);
         if (y == null) return;
         if (position < mDrawWidth) {
