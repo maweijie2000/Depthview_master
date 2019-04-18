@@ -90,6 +90,8 @@ public class DepthMapView extends View {
     private String trust_price;
     private String trust_quantity;
 
+    private boolean isShowAllCount = true;
+
     public DepthMapView(Context context) {
         this(context, null);
     }
@@ -109,6 +111,11 @@ public class DepthMapView extends View {
 
     public void setCountLimit(int mCountLimit) {
         this.mCountLimit = mCountLimit;
+    }
+
+    //展示是否否显示全部的委托量，默认是全部的
+    public void setIsShowAllCount(boolean isShowAllCount) {
+        this.isShowAllCount = isShowAllCount;
     }
 
     @SuppressLint("UseSparseArrays")
@@ -385,7 +392,9 @@ public class DepthMapView extends View {
         }
         canvas.drawCircle(position, y, mDotRadius, mRadioPaint);
 
-        String volume = trust_quantity + ": " + getVolumeValue(mMapX.get(position).getCurrentVolume());
+        String vol = isShowAllCount ? getVolumeValue(mMapX.get(position).getVolume()) : getVolumeValue(mMapX.get(position).getCurrentVolume());
+
+        String volume = trust_quantity + ": " + vol;
         String price = trust_price + ": " + getValue(mMapX.get(position).getPrice());
         float width = Math.max(mTextPaint.measureText(volume), mTextPaint.measureText(price));
         Paint.FontMetrics metrics = mTextPaint.getFontMetrics();
@@ -395,7 +404,7 @@ public class DepthMapView extends View {
         canvas.drawRoundRect(new RectF(mDrawWidth - width / 2 - padding, 0, mDrawWidth + width / 2 + padding * 2, textHeight * 2 + padding * 2), 10, 10, mSelectorBackgroundPaint);
         canvas.drawText(trust_quantity + ": ",
                 mDrawWidth - width / 2 + padding + mTextPaint.measureText(trust_quantity), textHeight + 2, mTextPaint);
-        canvas.drawText(getVolumeValue(mMapX.get(position).getCurrentVolume()), mDrawWidth + width / 2 + padding, textHeight + 2, mTextPaint);
+        canvas.drawText(vol, mDrawWidth + width / 2 + padding, textHeight + 2, mTextPaint);
         canvas.drawText(trust_price + ": ",
                 mDrawWidth - width / 2 + padding + mTextPaint.measureText(trust_price), textHeight * 2 + padding, mTextPaint);
         canvas.drawText(getValue(mMapX.get(position).getPrice()), mDrawWidth + width / 2 + padding, textHeight * 2 + padding, mTextPaint);
@@ -425,7 +434,7 @@ public class DepthMapView extends View {
         return String.format("%." + mCountLimit + "f", value);
     }
 
-    public boolean isPressed(){
+    public boolean isDepthPressed() {
         return mIsLongPress;
     }
 

@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void newDepth() {
 
-        if (dep.isPressed()) {
-            Toast.makeText(this,"changanzhong....",Toast.LENGTH_LONG).show();
+        if (dep.isDepthPressed()) {
+            Toast.makeText(this, "changanzhong....", Toast.LENGTH_LONG).show();
             return;
         }
 
