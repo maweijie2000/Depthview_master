@@ -85,7 +85,7 @@ public class DepthMapView extends View {
     private HashMap<Integer, DepthDataBean> mMapX;
     private HashMap<Integer, Float> mMapY;
     private Float[] mBottomPrice;
-    private GestureDetector mGestureDetector;
+//    private GestureDetector mGestureDetector;
 
     private String trust_price;
     private String trust_quantity;
@@ -128,20 +128,20 @@ public class DepthMapView extends View {
         mSellData = new ArrayList<>();
 
         //为了解决滑动过程中的卡顿问题
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Looper.prepare(); // <- 重点在这里
-
-                mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
-                    @Override
-                    public void onLongPress(MotionEvent e) {
-                        mIsLongPress = true;
-                        invalidate();
-                    }
-                });
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Looper.prepare(); // <- 重点在这里
+//
+//                mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+//                    @Override
+//                    public void onLongPress(MotionEvent e) {
+//                        mIsLongPress = true;
+//                        invalidate();
+//                    }
+//                });
+//            }
+//        }).start();
 
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -250,11 +250,17 @@ public class DepthMapView extends View {
                 mIsLongPress = true;
                 break;
             case MotionEvent.ACTION_MOVE:
-//                if (event.getPointerCount() == 1) {
-                mIsLongPress = true;
 
-                invalidate();
-//                }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Looper.prepare(); // <- 重点在这里
+                        mIsLongPress = true;
+                        postInvalidate();
+                    }
+                }).start();
+
                 break;
             case MotionEvent.ACTION_UP:
                 mIsLongPress = false;
@@ -265,7 +271,7 @@ public class DepthMapView extends View {
                 invalidate();
                 break;
         }
-        mGestureDetector.onTouchEvent(event);
+//        mGestureDetector.onTouchEvent(event);
         return true;
     }
 
