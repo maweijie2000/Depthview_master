@@ -367,13 +367,20 @@ public class DepthMapView extends View {
         if (size > 0 && mBottomPrice[0] != null) {
             String data = getValue(mBottomPrice[0]);
             canvas.drawText(data, mTextPaint.measureText(data), height, mTextPaint);
-            data = getValue(mBottomPrice[1]);
+        }
+        if (size > 1 && mBottomPrice[1] != null) {
+            String data = getValue(mBottomPrice[1]);
             canvas.drawText(data, mDrawWidth - 10, height, mTextPaint);
-            data = getValue(mBottomPrice[2]);
+        }
+        if (size > 2 && mBottomPrice[2] != null) {
+            String data = getValue(mBottomPrice[2]);
             canvas.drawText(data, mDrawWidth + mTextPaint.measureText(data) + 10, height, mTextPaint);
-            data = getValue(mBottomPrice[3]);
+        }
+        if (size > 3 && mBottomPrice[3] != null) {
+            String data = getValue(mBottomPrice[3]);
             canvas.drawText(data, mWidth, height, mTextPaint);
         }
+
         if (mIsLongPress) {
             mIsHave = false;
             for (int key : mMapX.keySet()) {
