@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void newDepth() {
 
         if (dep.isDepthPressed()) {
-            Toast.makeText(this, "changanzhong....", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "changanzhong....", Toast.LENGTH_LONG).show();
             return;
         }
 

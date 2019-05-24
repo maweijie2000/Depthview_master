@@ -87,8 +87,6 @@ public class DepthMapView extends View {
     private HashMap<Integer, Float> mMapY;
     private Float[] mBottomPrice;
 
-//    private GestureDetector mGestureDetector;
-
     private String trust_price;
     private String trust_quantity;
 
@@ -128,23 +126,6 @@ public class DepthMapView extends View {
         mBottomPrice = new Float[4];
         mBuyData = new ArrayList<>();
         mSellData = new ArrayList<>();
-
-        //为了解决滑动过程中的卡顿问题
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Looper.prepare(); // <- 重点在这里
-//
-//                mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
-//                    @Override
-//                    public void onLongPress(MotionEvent e) {
-//                        mIsLongPress = true;
-//                        invalidate();
-//                    }
-//                });
-//            }
-//        }).start();
-
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setTextAlign(Paint.Align.RIGHT);
@@ -250,32 +231,26 @@ public class DepthMapView extends View {
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
                 mIsLongPress = true;
+                invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
 
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Looper.prepare(); // <- 重点在这里
-                        mIsLongPress = true;
-                        postInvalidate();
-                    }
-                }).start();
+                if (event.getPointerCount() == 1) {
+                    mIsLongPress = true;
+                    invalidate();
+                }
 
                 break;
             case MotionEvent.ACTION_UP:
                 mIsLongPress = false;
-                mLastPosition = -1;
                 invalidate();
                 break;
             case MotionEvent.ACTION_CANCEL:
                 mIsLongPress = false;
-                mLastPosition = -1;
                 invalidate();
                 break;
         }
-//        mGestureDetector.onTouchEvent(event);
+
         return true;
     }
 
@@ -367,18 +342,20 @@ public class DepthMapView extends View {
         if (size > 0 && mBottomPrice[0] != null) {
             String data = getValue(mBottomPrice[0]);
             canvas.drawText(data, mTextPaint.measureText(data), height, mTextPaint);
-        }
-        if (size > 1 && mBottomPrice[1] != null) {
-            String data = getValue(mBottomPrice[1]);
-            canvas.drawText(data, mDrawWidth - 10, height, mTextPaint);
-        }
-        if (size > 2 && mBottomPrice[2] != null) {
-            String data = getValue(mBottomPrice[2]);
-            canvas.drawText(data, mDrawWidth + mTextPaint.measureText(data) + 10, height, mTextPaint);
-        }
-        if (size > 3 && mBottomPrice[3] != null) {
-            String data = getValue(mBottomPrice[3]);
-            canvas.drawText(data, mWidth, height, mTextPaint);
+
+            if (mBottomPrice[1] != null) {
+                data = getValue(mBottomPrice[1]);
+                canvas.drawText(data, mDrawWidth - 10, height, mTextPaint);
+            }
+            if (mBottomPrice[2] != null) {
+                data = getValue(mBottomPrice[2]);
+                canvas.drawText(data, mDrawWidth + mTextPaint.measureText(data) + 10, height, mTextPaint);
+            }
+            if (mBottomPrice[3] != null) {
+                data = getValue(mBottomPrice[3]);
+                canvas.drawText(data, mWidth, height, mTextPaint);
+            }
+
         }
 
         if (mIsLongPress) {
@@ -391,6 +368,7 @@ public class DepthMapView extends View {
                     break;
                 }
             }
+            //这里这么处理是保证滑动的时候界面始终有选中的感觉，不至于未选中的时候没有展示，界面有闪烁感，体验不好
             if (!mIsHave) {
                 drawSelectorView(canvas, mLastPosition);
             }
@@ -399,7 +377,6 @@ public class DepthMapView extends View {
 
     private void drawSelectorView(Canvas canvas, int position) {
         mIsHave = true;
-        if (position == -1) return;
         Float y = mMapY.get(position);
         if (y == null) return;
         if (position < mDrawWidth) {
